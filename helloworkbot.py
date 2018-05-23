@@ -137,7 +137,8 @@ keyword = {
 }
 output_header = ["備考", "代表者名", "電話番号", "FAX番号", "学歴", "必要な経験等",
                  "必要な免許・資格", "法人番号", "育児休業取得実績", "事業内容",
-                 "事業所名", "時間外", "受理安定所", "受理日", "従業員数",
+                 "事業所名", "時間外", "受理安定所", "受理日", "従業員数(企業全体)",
+                 "従業員数(うち就業場所)", "従業員数(うち女性)", "従業員数(うちパート)",
                  "加入保険等", "基本給(上限)", "基本給(下限)", "基本給と定額(上限)",
                  "基本給と定額(下限)", "雇用形態", "雇用期間", "求人番号",
                  "求人情報の種類", "求人条件にかかる特記事項", "休日", "休憩時間",
@@ -174,6 +175,10 @@ minute_regex = re.compile(r'(\d+)分')
 headcount_regex = re.compile(r'(\d+)人')
 taishokukinseido_regex = re.compile(r'<div>退職金制度:(.*?)</div>')
 date_regex = re.compile(r'平成(\d+)年(\d+)月(\d+)日')
+juugyouinsuu_1_kigyouzentai_regex = re.compile(r'企業全体:([\d,]+)人')
+juugyouinsuu_2_uchishuugyoubasho_regex = re.compile(r'うち就業場所:([\d,]+)人')
+juugyouinsuu_3_uchijosei_regex = re.compile(r'うち女性:([\d,]+)人')
+juugyouinsuu_4_uchipart_regex = re.compile(r'うちパート:([\d,]+)人')
 
 kyujinkensu = 0
 local_minimum = 0
@@ -286,6 +291,11 @@ def fetch_detail(kyujinNumber):
     col['kihonkyuu_and_teigaku_jougen'] = None
     col['kihonkyuu_and_teigaku_kagen'] = None
     col['taishokukinseido'] = None
+    del(col['juugyouinsuu'])
+    col['juugyouinsuu_1_kigyouzentai'] = None
+    col['juugyouinsuu_2_uchishuugyoubasho'] = None
+    col['juugyouinsuu_3_uchijosei'] = None
+    col['juugyouinsuu_4_uchipart'] = None
     req = urllib.request.Request(url_get_method)
     for key, value in request_headers.items():
         req.add_header(key, value)
@@ -314,6 +324,19 @@ def fetch_detail(kyujinNumber):
                     if chingin_range_result != None:
                         col[flag_key+'_kagen'] = chingin_range_result.group(1).replace(',', '')
                         col[flag_key+'_jougen'] = chingin_range_result.group(2).replace(',', '')
+                elif flag_key == 'juugyouinsuu':
+                    juugyouinsuu_1_kigyouzentai_result = juugyouinsuu_1_kigyouzentai_regex.search(div_regex.search(line).group(1))
+                    if juugyouinsuu_1_kigyouzentai_result != None:
+                        col['juugyouinsuu_1_kigyouzentai'] = juugyouinsuu_1_kigyouzentai_result.group(1).replace(',', '')
+                    juugyouinsuu_2_uchishuugyoubasho_result = juugyouinsuu_2_uchishuugyoubasho_regex.search(div_regex.search(line).group(1))
+                    if juugyouinsuu_2_uchishuugyoubasho_result != None:
+                        col['juugyouinsuu_2_uchishuugyoubasho'] = juugyouinsuu_2_uchishuugyoubasho_result.group(1).replace(',', '')
+                    juugyouinsuu_3_uchijosei_result = juugyouinsuu_3_uchijosei_regex.search(div_regex.search(line).group(1))
+                    if juugyouinsuu_3_uchijosei_result != None:
+                        col['juugyouinsuu_3_uchijosei'] = juugyouinsuu_3_uchijosei_result.group(1).replace(',', '')
+                    juugyouinsuu_4_uchipart_result = juugyouinsuu_4_uchipart_regex.search(div_regex.search(line).group(1))
+                    if juugyouinsuu_4_uchipart_result != None:
+                        col['juugyouinsuu_4_uchipart'] = juugyouinsuu_4_uchipart_result.group(1).replace(',', '')
                 elif flag_key == 'nenkankyuujitsusuu':
                     day_result = day_regex.search(div_regex.search(line).group(1))
                     if day_result != None:
