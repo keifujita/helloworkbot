@@ -168,7 +168,7 @@ relative_path_regex = re.compile(r'./130050.do')
 excess_spaces_regex = re.compile(r'[ \t][ \t]+')
 how_many_records_regex = re.compile(r'<p class="txt90-right">&nbsp;(\d+)&nbsp;件中&nbsp;(\d+)&nbsp;～&nbsp;(\d+)&nbsp;件を表示</p>')
 jikangai_regex = re.compile(r'(なし|あり)(　月平均)?(\d+)?(時間)?')
-chingin_range_regex = re.compile(r'(\d+),(\d+)円～(\d+),(\d+)円')
+chingin_range_regex = re.compile(r'([\d,]+)円～([\d,]+)円')
 day_regex = re.compile(r'(\d+)日')
 minute_regex = re.compile(r'(\d+)分')
 headcount_regex = re.compile(r'(\d+)人')
@@ -312,8 +312,8 @@ def fetch_detail(kyujinNumber):
                 elif flag_key == 'kihonkyuu' or flag_key == 'kihonkyuu_and_teigaku':
                     chingin_range_result = chingin_range_regex.search(div_regex.search(line).group(1))
                     if chingin_range_result != None:
-                        col[flag_key+'_kagen'] = chingin_range_result.group(1)+chingin_range_result.group(2)
-                        col[flag_key+'_jougen'] = chingin_range_result.group(3)+chingin_range_result.group(4)
+                        col[flag_key+'_kagen'] = chingin_range_result.group(1).replace(',', '')
+                        col[flag_key+'_jougen'] = chingin_range_result.group(2).replace(',', '')
                 elif flag_key == 'nenkankyuujitsusuu':
                     day_result = day_regex.search(div_regex.search(line).group(1))
                     if day_result != None:
@@ -450,18 +450,18 @@ K 運搬・清掃・包装等の職業
     if args.id:
         kn1, kn2 = args.id.split("-")
         id = {'kyushokuNumber1': kn1,
-                  'kyushokuNumber2': kn2,
-                  'kyushokuNumber1Hidden': kn1,
-                  'kyushokuNumber2Hidden': kn2,
-                  'kyushokuUmu': '1',
-                  'kyushokuUmuHidden': '1'}
+              'kyushokuNumber2': kn2,
+              'kyushokuNumber1Hidden': kn1,
+              'kyushokuNumber2Hidden': kn2,
+              'kyushokuUmu': '1',
+              'kyushokuUmuHidden': '1'}
     else:
         id = {'kyushokuNumber1': '',
-                  'kyushokuNumber2': '',
-                  'kyushokuNumber1Hidden': '',
-                  'kyushokuNumber2Hidden': '',
-                  'kyushokuUmu': '2',
-                  'kyushokuUmuHidden': '2'}
+              'kyushokuNumber2': '',
+              'kyushokuNumber1Hidden': '',
+              'kyushokuNumber2Hidden': '',
+              'kyushokuUmu': '2',
+              'kyushokuUmuHidden': '2'}
     form_data_default.update(id)
     file_object = open(filename, 'w')
     file_object.write("^".join(output_header)+"\n")

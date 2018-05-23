@@ -1,2 +1,3 @@
 *.csv
 *.backup*
+__pycache__/
