@@ -83,71 +83,70 @@ form_data_default = {
     'xab_vrbs': 'commonNextScreen,detailJokenChangeButton,commonDetailInfo,commonSearch,commonDelete',
 }
 keyword = {
-    'kyuujinbangou': '<th style="width:195px;">求人番号</th>',
-    'kyuujinjouhounoshurui': '<th style="width:195px;">求人情報の種類</th>',
-    'jigyoushomei': '<th style="width:195px;">事業所名</th>',
-    'daihyoushamei': '<th style="width:195px;">代表者名</th>',
-    'houjinbangou': '<th style="width:195px;">法人番号</th>',
-    'shozaichi': '<th style="width:195px;">所在地</th>',
-    'denwabangou': '<th style="width:195px;">電話番号</th>',
-    'faxbangou': '<th style="width:195px;">FAX番号</th>',
-    'jigyounaiyou': '<th style="width:195px;">事業内容</th>',
-    'shokushu': '<th style="width:195px;">職種</th>',
-    'koyoukeitai': '<th style="width:195px;">雇用形態</th>',
-    'sangyou': '<th style="width:195px;">産業</th>',
-    'shuugyoukeitai': '<th style="width:195px;">就業形態</th>',
-    'koyoukikan': '<th style="width:195px;">雇用期間</th>',
-    'nenrei': '<th style="width:195px;">年齢</th>',
-    'nenreiseigennoriyuu': '<th style="width:195px;">年齢制限の理由<br />',
-    'shuugyoujikan': '<th style="width:195px;">就業時間</th>',
-    'kyuukeijikan': '<th style="width:195px;">休憩時間</th>',
-    'jikangai': '<th style="width:195px;">時間外</th>',
-    'shuushoteiroudounissuu': '<th style="width:195px;">週所定労働日数</th>',
-    'kihonkyuu': '<div>a&#xa0;基本給（月額平均）又は時間額</div>',
-    'kihonkyuu_and_teigaku': '<div>a&#xa0;&#x2b;&#xa0;b</div>',
-    'shouyo': '<th style="width:195px;">賞与</th>',
-    'kyuujitsu': '<th style="width:195px;">休日</th>',
-    'shuukyuufutsuka': '<th style="width:195px;">週休二日</th>',
-    'nenkankyuujitsusuu': '<th style="width:195px;">年間休日数</th>',
-    'ikujikyuugyoushutokujisseki': '<th style="width:195px;">育児休業取得実績</th>',
-    'riyoukanounatakujisho': '<th style="width:195px;">利用可能な託児所</th>',
-    'shuugyoubasho': '<th style="width:195px;">就業場所</th>',
-    'tenkin': '<th style="width:195px;">転勤</th>',
-    'juugyouinsuu': '<th style="width:195px;">従業員数</th>',
-    'kanyuuhokentou': '<th style="width:195px;">加入保険等</th>',
-    'teinensei': '<th style="width:195px;">定年制</th>',
-    'saikoyou': '<th style="width:195px;">再雇用</th>',
-    'nyuukyokanoujuutaku': '<th style="width:195px;">入居可能住宅</th>',
-    'my_car_tsuukin': '<th style="width:195px;">マイカー通勤</th>',
-    'tsuukinteate': '<th style="width:195px;">通勤手当</th>',
-    'saiyouninzuu': '<th style="width:195px;">採用人数</th>',
-    'shigotononaiyou': '<th style="width:195px;">仕事の内容</th>',
-    'gakureki': '<th style="width:195px;">学歴</th>',
-    'hitsuyounakeikentou': '<th style="width:195px;">必要な経験等</th>',
-    'hitsuyounamenkyoshikaku': '<th style="width:195px;">必要な免許・資格</th>',
-    'senkouhouhou': '<th style="width:195px;">選考方法</th>',
-    'senkoukekkatsuuchi': '<th style="width:195px;">選考結果通知</th>',
-    'ouboshoruitou': '<th style="width:195px;">応募書類等</th>',
-    'senkounichiji': '<th style="width:195px;">選考日時</th>',
-    'kyuujinjoukennikakarutokkijikou': '<th style="width:195px;">求人条件にかかる特記事項</th>',
-    'bikou': '<th style="width:195px;">備考</th>',
-    'juribi': '<th style="width:195px;">受理日</th>',
-    'yuukoukigenbi': '<th style="width:195px;">有効期限日</th>',
-    'jurianteisho': '<th style="width:195px;">受理安定所</th>',
+    '求人番号': '<th style="width:195px;">求人番号</th>',
+    '求人情報の種類': '<th style="width:195px;">求人情報の種類</th>',
+    '事業所名': '<th style="width:195px;">事業所名</th>',
+    '代表者名': '<th style="width:195px;">代表者名</th>',
+    '法人番号': '<th style="width:195px;">法人番号</th>',
+    '所在地': '<th style="width:195px;">所在地</th>',
+    '電話番号': '<th style="width:195px;">電話番号</th>',
+    'FAX番号': '<th style="width:195px;">FAX番号</th>',
+    '事業内容': '<th style="width:195px;">事業内容</th>',
+    '職種': '<th style="width:195px;">職種</th>',
+    '雇用形態': '<th style="width:195px;">雇用形態</th>',
+    '産業': '<th style="width:195px;">産業</th>',
+    '就業形態': '<th style="width:195px;">就業形態</th>',
+    '雇用期間': '<th style="width:195px;">雇用期間</th>',
+    '年齢': '<th style="width:195px;">年齢</th>',
+    '年齢制限の理由': '<th style="width:195px;">年齢制限の理由<br />',
+    '就業時間': '<th style="width:195px;">就業時間</th>',
+    '休憩時間': '<th style="width:195px;">休憩時間</th>',
+    '時間外': '<th style="width:195px;">時間外</th>',
+    '週所定労働日数': '<th style="width:195px;">週所定労働日数</th>',
+    '基本給': '<div>a&#xa0;基本給（月額平均）又は時間額</div>',
+    '基本給と定額': '<div>a&#xa0;&#x2b;&#xa0;b</div>',
+    '賞与': '<th style="width:195px;">賞与</th>',
+    '休日': '<th style="width:195px;">休日</th>',
+    '週休二日': '<th style="width:195px;">週休二日</th>',
+    '年間休日数': '<th style="width:195px;">年間休日数</th>',
+    '育児休業取得実績': '<th style="width:195px;">育児休業取得実績</th>',
+    '利用可能な託児所': '<th style="width:195px;">利用可能な託児所</th>',
+    '就業場所': '<th style="width:195px;">就業場所</th>',
+    '転勤': '<th style="width:195px;">転勤</th>',
+    '従業員数': '<th style="width:195px;">従業員数</th>',
+    '加入保険等': '<th style="width:195px;">加入保険等</th>',
+    '定年制': '<th style="width:195px;">定年制</th>',
+    '再雇用': '<th style="width:195px;">再雇用</th>',
+    '入居可能住宅': '<th style="width:195px;">入居可能住宅</th>',
+    'マイカー通勤': '<th style="width:195px;">マイカー通勤</th>',
+    '通勤手当': '<th style="width:195px;">通勤手当</th>',
+    '採用人数': '<th style="width:195px;">採用人数</th>',
+    '仕事の内容': '<th style="width:195px;">仕事の内容</th>',
+    '学歴': '<th style="width:195px;">学歴</th>',
+    '必要な経験等': '<th style="width:195px;">必要な経験等</th>',
+    '必要な免許・資格': '<th style="width:195px;">必要な免許・資格</th>',
+    '選考方法': '<th style="width:195px;">選考方法</th>',
+    '選考結果通知': '<th style="width:195px;">選考結果通知</th>',
+    '応募書類等': '<th style="width:195px;">応募書類等</th>',
+    '選考日時': '<th style="width:195px;">選考日時</th>',
+    '求人条件にかかる特記事項': '<th style="width:195px;">求人条件にかかる特記事項</th>',
+    '備考': '<th style="width:195px;">備考</th>',
+    '受理日': '<th style="width:195px;">受理日</th>',
+    '有効期限日': '<th style="width:195px;">有効期限日</th>',
+    '受理安定所': '<th style="width:195px;">受理安定所</th>',
 }
-output_header = ["備考", "代表者名", "電話番号", "FAX番号", "学歴", "必要な経験等",
-                 "必要な免許・資格", "法人番号", "育児休業取得実績", "事業内容",
-                 "事業所名", "時間外", "受理安定所", "受理日", "従業員数(企業全体)",
-                 "従業員数(うち就業場所)", "従業員数(うち女性)", "従業員数(うちパート)",
-                 "加入保険等", "基本給(上限)", "基本給(下限)", "基本給と定額(上限)",
-                 "基本給と定額(下限)", "雇用形態", "雇用期間", "求人番号",
-                 "求人情報の種類", "求人条件にかかる特記事項", "休日", "休憩時間",
-                 "マイカー通勤", "年間休日数", "年齢", "年齢制限の理由",
-                 "入居可能住宅", "応募書類等", "利用可能な託児所", "再雇用",
-                 "採用人数", "産業", "選考方法", "選考結果通知", "選考日時",
-                 "仕事の内容", "職種", "賞与", "所在地", "就業場所", "就業時間",
-                 "就業形態", "週休二日", "週所定労働日数", "退職金制度", "定年制",
-                 "転勤", "通勤手当", "有効期限日"]
+output_header = ["求人番号", "求人情報の種類", "事業所名", "代表者名", "法人番号",
+                 "所在地", "電話番号", "FAX番号", "事業内容", "職種", "雇用形態",
+                 "産業", "就業形態", "雇用期間", "年齢", "年齢制限の理由", "就業時間",
+                 "休憩時間", "時間外", "週所定労働日数", "基本給(下限)", "基本給(上限)",
+                 "基本給と定額(下限)", "基本給と定額(上限)", "賞与", "休日", "週休二日",
+                 "年間休日数", "育児休業取得実績", "利用可能な託児所", "就業場所",
+                 "転勤", "従業員数(企業全体)", "従業員数(うち就業場所)", "従業員数(うち女性)",
+                 "従業員数(うちパート)", "加入保険等", "退職金制度", "定年制", "再雇用",
+                 "入居可能住宅", "マイカー通勤", "通勤手当", "採用人数", "仕事の内容",
+                 "学歴", "必要な経験等", "必要な免許・資格", "選考方法", "選考結果通知",
+                 "応募書類等", "選考日時", "求人条件にかかる特記事項", "備考", "受理日",
+                 "有効期限日", "受理安定所"]
 
 table_start_regex = re.compile(r'<table style="width: 810px;" cellspacing="0" class="sole-small">')
 table_end_regex = re.compile(r'</table>')
@@ -168,17 +167,17 @@ a_regex = re.compile(r'<a id="ID_link" name="link" href="http://www.mhlw.go.jp.*
 relative_path_regex = re.compile(r'./130050.do')
 excess_spaces_regex = re.compile(r'[ \t][ \t]+')
 how_many_records_regex = re.compile(r'<p class="txt90-right">&nbsp;(\d+)&nbsp;件中&nbsp;(\d+)&nbsp;～&nbsp;(\d+)&nbsp;件を表示</p>')
-jikangai_regex = re.compile(r'(なし|あり)(　月平均)?(\d+)?(時間)?')
-chingin_range_regex = re.compile(r'([\d,]+)円～([\d,]+)円')
+overtime_regex = re.compile(r'(なし|あり)(　月平均)?(\d+)?(時間)?')
+pay_rate_regex = re.compile(r'([\d,]+)円～([\d,]+)円')
 day_regex = re.compile(r'(\d+)日')
 minute_regex = re.compile(r'(\d+)分')
 headcount_regex = re.compile(r'(\d+)人')
-taishokukinseido_regex = re.compile(r'<div>退職金制度:(.*?)</div>')
+retirement_plan_regex = re.compile(r'<div>退職金制度:(.*?)</div>')
 date_regex = re.compile(r'平成(\d+)年(\d+)月(\d+)日')
-juugyouinsuu_1_kigyouzentai_regex = re.compile(r'企業全体:([\d,]+)人')
-juugyouinsuu_2_uchishuugyoubasho_regex = re.compile(r'うち就業場所:([\d,]+)人')
-juugyouinsuu_3_uchijosei_regex = re.compile(r'うち女性:([\d,]+)人')
-juugyouinsuu_4_uchipart_regex = re.compile(r'うちパート:([\d,]+)人')
+noe_total_regex = re.compile(r'企業全体:([\d,]+)人')
+noe_office_regex = re.compile(r'うち就業場所:([\d,]+)人')
+noe_female_regex = re.compile(r'うち女性:([\d,]+)人')
+noe_part_time_regex = re.compile(r'うちパート:([\d,]+)人')
 
 kyujinkensu = 0
 local_minimum = 0
@@ -283,19 +282,7 @@ def fetch_detail(kyujinNumber):
                                "kyushokuUmuHidden={0}".format(form_data_default['kyushokuUmuHidden']),
                                "kyushokuNumber1Hidden={0}".format(form_data_default['kyushokuNumber1']),
                                "kyushokuNumber2Hidden={0}".format(form_data_default['kyushokuNumber2'])])
-    col = {key: None for key in keyword.keys()}
-    del(col['kihonkyuu'])
-    del(col['kihonkyuu_and_teigaku'])
-    col['kihonkyuu_jougen'] = None
-    col['kihonkyuu_kagen'] = None
-    col['kihonkyuu_and_teigaku_jougen'] = None
-    col['kihonkyuu_and_teigaku_kagen'] = None
-    col['taishokukinseido'] = None
-    del(col['juugyouinsuu'])
-    col['juugyouinsuu_1_kigyouzentai'] = None
-    col['juugyouinsuu_2_uchishuugyoubasho'] = None
-    col['juugyouinsuu_3_uchijosei'] = None
-    col['juugyouinsuu_4_uchipart'] = None
+    col = {key: None for key in output_header}
     req = urllib.request.Request(url_get_method)
     for key, value in request_headers.items():
         req.add_header(key, value)
@@ -307,49 +294,54 @@ def fetch_detail(kyujinNumber):
             for key, value in keyword.items():
                 if line.find(value) != -1:
                     flag_key = key
-                    continue
-            if taishokukinseido_regex.search(line):
-                col['taishokukinseido'] = taishokukinseido_regex.search(line).group(1)
+                    break
+            if retirement_plan_regex.search(line):
+                col["退職金制度"] = retirement_plan_regex.search(line).group(1)
         elif flag_key != None:
             if div_regex.search(line):
-                if flag_key == 'jikangai':
-                    jikangai_result = jikangai_regex.search(div_regex.search(line).group(1))
-                    if jikangai_result != None:
-                        if jikangai_result.group(1) == 'なし':
+                if flag_key == '時間外':
+                    overtime_result = overtime_regex.search(div_regex.search(line).group(1))
+                    if overtime_result != None:
+                        if overtime_result.group(1) == 'なし':
                             col[flag_key] = '0'
-                        elif jikangai_result.group(1) == 'あり':
-                            col[flag_key] = jikangai_result.group(3)
-                elif flag_key == 'kihonkyuu' or flag_key == 'kihonkyuu_and_teigaku':
-                    chingin_range_result = chingin_range_regex.search(div_regex.search(line).group(1))
-                    if chingin_range_result != None:
-                        col[flag_key+'_kagen'] = chingin_range_result.group(1).replace(',', '')
-                        col[flag_key+'_jougen'] = chingin_range_result.group(2).replace(',', '')
-                elif flag_key == 'juugyouinsuu':
-                    juugyouinsuu_1_kigyouzentai_result = juugyouinsuu_1_kigyouzentai_regex.search(div_regex.search(line).group(1))
-                    if juugyouinsuu_1_kigyouzentai_result != None:
-                        col['juugyouinsuu_1_kigyouzentai'] = juugyouinsuu_1_kigyouzentai_result.group(1).replace(',', '')
-                    juugyouinsuu_2_uchishuugyoubasho_result = juugyouinsuu_2_uchishuugyoubasho_regex.search(div_regex.search(line).group(1))
-                    if juugyouinsuu_2_uchishuugyoubasho_result != None:
-                        col['juugyouinsuu_2_uchishuugyoubasho'] = juugyouinsuu_2_uchishuugyoubasho_result.group(1).replace(',', '')
-                    juugyouinsuu_3_uchijosei_result = juugyouinsuu_3_uchijosei_regex.search(div_regex.search(line).group(1))
-                    if juugyouinsuu_3_uchijosei_result != None:
-                        col['juugyouinsuu_3_uchijosei'] = juugyouinsuu_3_uchijosei_result.group(1).replace(',', '')
-                    juugyouinsuu_4_uchipart_result = juugyouinsuu_4_uchipart_regex.search(div_regex.search(line).group(1))
-                    if juugyouinsuu_4_uchipart_result != None:
-                        col['juugyouinsuu_4_uchipart'] = juugyouinsuu_4_uchipart_result.group(1).replace(',', '')
-                elif flag_key == 'nenkankyuujitsusuu':
+                        elif overtime_result.group(1) == 'あり':
+                            col[flag_key] = overtime_result.group(3)
+                elif flag_key == '基本給':
+                    pay_rate_result = pay_rate_regex.search(div_regex.search(line).group(1))
+                    if pay_rate_result != None:
+                        col["基本給(下限)"] = pay_rate_result.group(1).replace(',', '')
+                        col["基本給(上限)"] = pay_rate_result.group(2).replace(',', '')
+                elif flag_key == '基本給と定額':
+                    pay_rate_result = pay_rate_regex.search(div_regex.search(line).group(1))
+                    if pay_rate_result != None:
+                        col["基本給と定額(下限)"] = pay_rate_result.group(1).replace(',', '')
+                        col["基本給と定額(上限)"] = pay_rate_result.group(2).replace(',', '')
+                elif flag_key == '従業員数':
+                    noe_total_result = noe_total_regex.search(div_regex.search(line).group(1))
+                    if noe_total_result != None:
+                        col["従業員数(企業全体)"] = noe_total_result.group(1).replace(',', '')
+                    noe_office_result = noe_office_regex.search(div_regex.search(line).group(1))
+                    if noe_office_result != None:
+                        col["従業員数(うち就業場所)"] = noe_office_result.group(1).replace(',', '')
+                    noe_female_result = noe_female_regex.search(div_regex.search(line).group(1))
+                    if noe_female_result != None:
+                        col["従業員数(うち女性)"] = noe_female_result.group(1).replace(',', '')
+                    noe_part_time_result = noe_part_time_regex.search(div_regex.search(line).group(1))
+                    if noe_part_time_result != None:
+                        col["従業員数(うちパート)"] = noe_part_time_result.group(1).replace(',', '')
+                elif flag_key == '年間休日数':
                     day_result = day_regex.search(div_regex.search(line).group(1))
                     if day_result != None:
                         col[flag_key] = day_result.group(1)
-                elif flag_key == 'kyuukeijikan':
+                elif flag_key == '休憩時間':
                     minute_result = minute_regex.search(div_regex.search(line).group(1))
                     if minute_result != None:
                         col[flag_key] = minute_result.group(1)
-                elif flag_key == 'saiyouninzuu':
+                elif flag_key == '採用人数':
                     headcount_result = headcount_regex.search(div_regex.search(line).group(1))
                     if headcount_result != None:
                         col[flag_key] = headcount_result.group(1)
-                elif flag_key == 'juribi' or flag_key == 'yuukoukigenbi':
+                elif flag_key == '受理日' or flag_key == '有効期限日':
                     date_result = date_regex.search(div_regex.search(line).group(1))
                     if date_result != None:
                         col[flag_key] = '{0:4d}-{1:02d}-{2:02d}'.format(int(date_result.group(1))+1988, int(date_result.group(2)), int(date_result.group(3)))
@@ -362,7 +354,7 @@ def fetch_detail(kyujinNumber):
             elif a_regex.search(line):
                 col[flag_key] = a_regex.search(line).group(1)
                 flag_key = None
-    return '^'.join([str(col[k]) for k in sorted(col.keys())])
+    return '^'.join([str(col[k]) for k in col.keys()])
 
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
