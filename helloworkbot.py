@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import argparse
 import math
@@ -8,6 +8,7 @@ import urllib.request
 
 url = 'https://www.hellowork.go.jp/servicef/130050.do'
 filename = 'helloworkbot.csv'
+
 request_headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
     'Accept-Encoding': 'gzip, deflate, br',
@@ -83,70 +84,117 @@ form_data_default = {
     'xab_vrbs': 'commonNextScreen,detailJokenChangeButton,commonDetailInfo,commonSearch,commonDelete',
 }
 keyword = {
-    '求人番号': '<th style="width:195px;">求人番号</th>',
-    '求人情報の種類': '<th style="width:195px;">求人情報の種類</th>',
-    '事業所名': '<th style="width:195px;">事業所名</th>',
-    '代表者名': '<th style="width:195px;">代表者名</th>',
-    '法人番号': '<th style="width:195px;">法人番号</th>',
-    '所在地': '<th style="width:195px;">所在地</th>',
-    '電話番号': '<th style="width:195px;">電話番号</th>',
-    'FAX番号': '<th style="width:195px;">FAX番号</th>',
-    '事業内容': '<th style="width:195px;">事業内容</th>',
-    '職種': '<th style="width:195px;">職種</th>',
-    '雇用形態': '<th style="width:195px;">雇用形態</th>',
-    '産業': '<th style="width:195px;">産業</th>',
-    '就業形態': '<th style="width:195px;">就業形態</th>',
-    '雇用期間': '<th style="width:195px;">雇用期間</th>',
-    '年齢': '<th style="width:195px;">年齢</th>',
-    '年齢制限の理由': '<th style="width:195px;">年齢制限の理由<br />',
-    '就業時間': '<th style="width:195px;">就業時間</th>',
-    '休憩時間': '<th style="width:195px;">休憩時間</th>',
-    '時間外': '<th style="width:195px;">時間外</th>',
-    '週所定労働日数': '<th style="width:195px;">週所定労働日数</th>',
-    '基本給': '<div>a&#xa0;基本給（月額平均）又は時間額</div>',
-    '基本給と定額': '<div>a&#xa0;&#x2b;&#xa0;b</div>',
-    '賞与': '<th style="width:195px;">賞与</th>',
-    '休日': '<th style="width:195px;">休日</th>',
-    '週休二日': '<th style="width:195px;">週休二日</th>',
-    '年間休日数': '<th style="width:195px;">年間休日数</th>',
-    '育児休業取得実績': '<th style="width:195px;">育児休業取得実績</th>',
-    '利用可能な託児所': '<th style="width:195px;">利用可能な託児所</th>',
-    '就業場所': '<th style="width:195px;">就業場所</th>',
-    '転勤': '<th style="width:195px;">転勤</th>',
-    '従業員数': '<th style="width:195px;">従業員数</th>',
-    '加入保険等': '<th style="width:195px;">加入保険等</th>',
-    '定年制': '<th style="width:195px;">定年制</th>',
-    '再雇用': '<th style="width:195px;">再雇用</th>',
-    '入居可能住宅': '<th style="width:195px;">入居可能住宅</th>',
-    'マイカー通勤': '<th style="width:195px;">マイカー通勤</th>',
-    '通勤手当': '<th style="width:195px;">通勤手当</th>',
-    '採用人数': '<th style="width:195px;">採用人数</th>',
-    '仕事の内容': '<th style="width:195px;">仕事の内容</th>',
-    '学歴': '<th style="width:195px;">学歴</th>',
-    '必要な経験等': '<th style="width:195px;">必要な経験等</th>',
-    '必要な免許・資格': '<th style="width:195px;">必要な免許・資格</th>',
-    '選考方法': '<th style="width:195px;">選考方法</th>',
-    '選考結果通知': '<th style="width:195px;">選考結果通知</th>',
-    '応募書類等': '<th style="width:195px;">応募書類等</th>',
-    '選考日時': '<th style="width:195px;">選考日時</th>',
-    '求人条件にかかる特記事項': '<th style="width:195px;">求人条件にかかる特記事項</th>',
-    '備考': '<th style="width:195px;">備考</th>',
-    '受理日': '<th style="width:195px;">受理日</th>',
-    '有効期限日': '<th style="width:195px;">有効期限日</th>',
-    '受理安定所': '<th style="width:195px;">受理安定所</th>',
+    'job_number': '<th style="width:195px;">求人番号</th>',
+    'full_time_or_part_time': '<th style="width:195px;">求人情報の種類</th>',
+    'organization_name': '<th style="width:195px;">事業所名</th>',
+    'executive_director': '<th style="width:195px;">代表者名</th>',
+    'organization_number': '<th style="width:195px;">法人番号</th>',
+    'address': '<th style="width:195px;">所在地</th>',
+    'phone_number': '<th style="width:195px;">電話番号</th>',
+    'fax_number': '<th style="width:195px;">FAX番号</th>',
+    'business_description': '<th style="width:195px;">事業内容</th>',
+    'type_of_job': '<th style="width:195px;">職種</th>',
+    'employment_type': '<th style="width:195px;">雇用形態</th>',
+    'industry': '<th style="width:195px;">産業</th>',
+    'type_of_work_hours': '<th style="width:195px;">就業形態</th>',
+    'period_of_employment': '<th style="width:195px;">雇用期間</th>',
+    'age_requirements': '<th style="width:195px;">年齢</th>',
+    'reason_for_age_requirements': '<th style="width:195px;">年齢制限の理由<br />',
+    'work_hours': '<th style="width:195px;">就業時間</th>',
+    'break': '<th style="width:195px;">休憩時間</th>',
+    'overtime': '<th style="width:195px;">時間外</th>',
+    'work_days_per_week': '<th style="width:195px;">週所定労働日数</th>',
+    'wage': '<div>a&#xa0;基本給（月額平均）又は時間額</div>',
+    'wage_and_allowance': '<div>a&#xa0;&#x2b;&#xa0;b</div>',
+    'bonus': '<th style="width:195px;">賞与</th>',
+    'days_of_rest': '<th style="width:195px;">休日</th>',
+    'two_day_weekend': '<th style="width:195px;">週休二日</th>',
+    'days_of_rest_per_year': '<th style="width:195px;">年間休日数</th>',
+    'childcare_leave_record': '<th style="width:195px;">育児休業取得実績</th>',
+    'available_day_care_center': '<th style="width:195px;">利用可能な託児所</th>',
+    'office_location': '<th style="width:195px;">就業場所</th>',
+    'transfer': '<th style="width:195px;">転勤</th>',
+    'number_of_employees': '<th style="width:195px;">従業員数</th>',
+    'insurance': '<th style="width:195px;">加入保険等</th>',
+    'retirement_age': '<th style="width:195px;">定年制</th>',
+    'reemployment': '<th style="width:195px;">再雇用</th>',
+    'company_housing': '<th style="width:195px;">入居可能住宅</th>',
+    'commuting_by_car': '<th style="width:195px;">マイカー通勤</th>',
+    'transportation_allowance': '<th style="width:195px;">通勤手当</th>',
+    'number_of_positions': '<th style="width:195px;">採用人数</th>',
+    'job_description': '<th style="width:195px;">仕事の内容</th>',
+    'education': '<th style="width:195px;">学歴</th>',
+    'experience': '<th style="width:195px;">必要な経験等</th>',
+    'qualifications': '<th style="width:195px;">必要な免許・資格</th>',
+    'selection_procedures': '<th style="width:195px;">選考方法</th>',
+    'notice_of_result': '<th style="width:195px;">選考結果通知</th>',
+    'application_documents': '<th style="width:195px;">応募書類等</th>',
+    'selection_schedule': '<th style="width:195px;">選考日時</th>',
+    'specific_qualifications': '<th style="width:195px;">求人条件にかかる特記事項</th>',
+    'remarks': '<th style="width:195px;">備考</th>',
+    'registration_date': '<th style="width:195px;">受理日</th>',
+    'expiration_date': '<th style="width:195px;">有効期限日</th>',
+    'registration_office': '<th style="width:195px;">受理安定所</th>',
 }
-output_header = ["求人番号", "求人情報の種類", "事業所名", "代表者名", "法人番号",
-                 "所在地", "電話番号", "FAX番号", "事業内容", "職種", "雇用形態",
-                 "産業", "就業形態", "雇用期間", "年齢", "年齢制限の理由", "就業時間",
-                 "休憩時間", "時間外", "週所定労働日数", "基本給(下限)", "基本給(上限)",
-                 "基本給と定額(下限)", "基本給と定額(上限)", "賞与", "休日", "週休二日",
-                 "年間休日数", "育児休業取得実績", "利用可能な託児所", "就業場所",
-                 "転勤", "従業員数(企業全体)", "従業員数(うち就業場所)", "従業員数(うち女性)",
-                 "従業員数(うちパート)", "加入保険等", "退職金制度", "定年制", "再雇用",
-                 "入居可能住宅", "マイカー通勤", "通勤手当", "採用人数", "仕事の内容",
-                 "学歴", "必要な経験等", "必要な免許・資格", "選考方法", "選考結果通知",
-                 "応募書類等", "選考日時", "求人条件にかかる特記事項", "備考", "受理日",
-                 "有効期限日", "受理安定所"]
+output_header = [
+                 "job_number",# 求人番号
+                 "full_time_or_part_time",# 求人情報の種類
+                 "organization_name",# 事業所名
+                 "executive_director",# 代表者名
+                 "organization_number",# 法人番号
+                 "address",# 所在地
+                 "phone_number",# 電話番号
+                 "fax_number",# FAX番号
+                 "business_description",# 事業内容
+                 "type_of_job",# 職種
+                 "employment_type",# 雇用形態
+                 "industry",# 産業
+                 "type_of_work_hours",# 就業形態
+                 "period_of_employment",# 雇用期間
+                 "age_requirements",# 年齢
+                 "reason_for_age_requirements",# 年齢制限の理由
+                 "work_hours",# 就業時間
+                 "break",# 休憩時間
+                 "overtime",# 時間外
+                 "work_days_per_week",# 週所定労働日数
+                 "minimum_wage",# 基本給(下限)
+                 "maximum_wage",# 基本給(上限)
+                 "minimum_wage_and_allowance",# 基本給と定額(下限)
+                 "maximum_wage_and_allowance",# 基本給と定額(上限)
+                 "bonus",# 賞与
+                 "days_of_rest",# 休日
+                 "two_day_weekend",# 週休二日
+                 "days_of_rest_per_year",# 年間休日数
+                 "childcare_leave_record",# 育児休業取得実績
+                 "available_day_care_center",# 利用可能な託児所
+                 "office_location",# 就業場所
+                 "transfer",# 転勤
+                 "number_of_employees_of_organization",# 従業員数(企業全体)
+                 "number_of_employees_of_office",# 従業員数(うち就業場所)
+                 "number_of_female_employees_of_office",# 従業員数(うち女性)
+                 "number_of_part_time_employees_of_office",# 従業員数(うちパート)
+                 "insurance",# 加入保険等
+                 "retirement_benefit",# 退職金制度
+                 "retirement_age",# 定年制
+                 "reemployment",# 再雇用
+                 "company_housing",# 入居可能住宅
+                 "commuting_by_car",# マイカー通勤
+                 "transportation_allowance",# 通勤手当
+                 "number_of_positions",# 採用人数
+                 "job_description",# 仕事の内容
+                 "education",# 学歴
+                 "experience",# 必要な経験等
+                 "qualifications",# 必要な免許・資格
+                 "selection_procedures",# 選考方法
+                 "notice_of_result",# 選考結果通知
+                 "application_documents",# 応募書類等
+                 "selection_schedule",# 選考日時
+                 "specific_qualifications",# 求人条件にかかる特記事項
+                 "remarks",# 備考
+                 "registration_date",# 受理日
+                 "expiration_date",# 有効期限日
+                 "registration_office",# 受理安定所
+                ]
 
 table_start_regex = re.compile(r'<table style="width: 810px;" cellspacing="0" class="sole-small">')
 table_end_regex = re.compile(r'</table>')
@@ -172,12 +220,12 @@ pay_rate_regex = re.compile(r'([\d,]+)円～([\d,]+)円')
 day_regex = re.compile(r'(\d+)日')
 minute_regex = re.compile(r'(\d+)分')
 headcount_regex = re.compile(r'(\d+)人')
-retirement_plan_regex = re.compile(r'<div>退職金制度:(.*?)</div>')
+retirement_benefit_regex = re.compile(r'<div>退職金制度:(.*?)</div>')
 date_regex = re.compile(r'平成(\d+)年(\d+)月(\d+)日')
-noe_total_regex = re.compile(r'企業全体:([\d,]+)人')
-noe_office_regex = re.compile(r'うち就業場所:([\d,]+)人')
-noe_female_regex = re.compile(r'うち女性:([\d,]+)人')
-noe_part_time_regex = re.compile(r'うちパート:([\d,]+)人')
+number_of_employees_of_organization_regex = re.compile(r'企業全体:([\d,]+)人')
+number_of_employees_of_office_regex = re.compile(r'うち就業場所:([\d,]+)人')
+number_of_female_employees_of_office_regex = re.compile(r'うち女性:([\d,]+)人')
+number_of_part_time_employees_of_office_regex = re.compile(r'うちパート:([\d,]+)人')
 
 kyujinkensu = 0
 local_minimum = 0
@@ -295,58 +343,61 @@ def fetch_detail(kyujinNumber):
                 if line.find(value) != -1:
                     flag_key = key
                     break
-            if retirement_plan_regex.search(line):
-                col["退職金制度"] = retirement_plan_regex.search(line).group(1)
+            if retirement_benefit_regex.search(line):
+                col["retirement_benefit"] = retirement_benefit_regex.search(line).group(1)
         elif flag_key != None:
             if div_regex.search(line):
-                if flag_key == '時間外':
+                if flag_key == 'overtime':
                     overtime_result = overtime_regex.search(div_regex.search(line).group(1))
                     if overtime_result != None:
                         if overtime_result.group(1) == 'なし':
                             col[flag_key] = '0'
                         elif overtime_result.group(1) == 'あり':
                             col[flag_key] = overtime_result.group(3)
-                elif flag_key == '基本給':
+                elif flag_key == 'wage':
                     pay_rate_result = pay_rate_regex.search(div_regex.search(line).group(1))
                     if pay_rate_result != None:
-                        col["基本給(下限)"] = pay_rate_result.group(1).replace(',', '')
-                        col["基本給(上限)"] = pay_rate_result.group(2).replace(',', '')
-                elif flag_key == '基本給と定額':
+                        col["minimum_wage"] = pay_rate_result.group(1).replace(',', '')
+                        col["maximum_wage"] = pay_rate_result.group(2).replace(',', '')
+                elif flag_key == 'wage_and_allowance':
                     pay_rate_result = pay_rate_regex.search(div_regex.search(line).group(1))
                     if pay_rate_result != None:
-                        col["基本給と定額(下限)"] = pay_rate_result.group(1).replace(',', '')
-                        col["基本給と定額(上限)"] = pay_rate_result.group(2).replace(',', '')
-                elif flag_key == '従業員数':
-                    noe_total_result = noe_total_regex.search(div_regex.search(line).group(1))
-                    if noe_total_result != None:
-                        col["従業員数(企業全体)"] = noe_total_result.group(1).replace(',', '')
-                    noe_office_result = noe_office_regex.search(div_regex.search(line).group(1))
-                    if noe_office_result != None:
-                        col["従業員数(うち就業場所)"] = noe_office_result.group(1).replace(',', '')
-                    noe_female_result = noe_female_regex.search(div_regex.search(line).group(1))
-                    if noe_female_result != None:
-                        col["従業員数(うち女性)"] = noe_female_result.group(1).replace(',', '')
-                    noe_part_time_result = noe_part_time_regex.search(div_regex.search(line).group(1))
-                    if noe_part_time_result != None:
-                        col["従業員数(うちパート)"] = noe_part_time_result.group(1).replace(',', '')
-                elif flag_key == '年間休日数':
+                        col["minimum_wage_and_allowance"] = pay_rate_result.group(1).replace(',', '')
+                        col["maximum_wage_and_allowance"] = pay_rate_result.group(2).replace(',', '')
+                elif flag_key == 'number_of_employees':
+                    number_of_employees_of_organization_result = number_of_employees_of_organization_regex.search(div_regex.search(line).group(1))
+                    if number_of_employees_of_organization_result != None:
+                        col["number_of_employees_of_organization"] = number_of_employees_of_organization_result.group(1).replace(',', '')
+                    number_of_employees_of_office_result = number_of_employees_of_office_regex.search(div_regex.search(line).group(1))
+                    if number_of_employees_of_office_result != None:
+                        col["number_of_employees_of_office"] = number_of_employees_of_office_result.group(1).replace(',', '')
+                    number_of_female_employees_of_office_result = number_of_female_employees_of_office_regex.search(div_regex.search(line).group(1))
+                    if number_of_female_employees_of_office_result != None:
+                        col["number_of_female_employees_of_office"] = number_of_female_employees_of_office_result.group(1).replace(',', '')
+                    number_of_part_time_employees_of_office_result = number_of_part_time_employees_of_office_regex.search(div_regex.search(line).group(1))
+                    if number_of_part_time_employees_of_office_result != None:
+                        col["number_of_part_time_employees_of_office"] = number_of_part_time_employees_of_office_result.group(1).replace(',', '')
+                elif flag_key == 'days_of_rest_per_year':
                     day_result = day_regex.search(div_regex.search(line).group(1))
                     if day_result != None:
                         col[flag_key] = day_result.group(1)
-                elif flag_key == '休憩時間':
+                elif flag_key == 'break':
                     minute_result = minute_regex.search(div_regex.search(line).group(1))
                     if minute_result != None:
                         col[flag_key] = minute_result.group(1)
-                elif flag_key == '採用人数':
+                elif flag_key == 'number_of_positions':
                     headcount_result = headcount_regex.search(div_regex.search(line).group(1))
                     if headcount_result != None:
                         col[flag_key] = headcount_result.group(1)
-                elif flag_key == '受理日' or flag_key == '有効期限日':
+                elif flag_key == 'registration_date' or flag_key == 'expiration_date':
                     date_result = date_regex.search(div_regex.search(line).group(1))
                     if date_result != None:
                         col[flag_key] = '{0:4d}-{1:02d}-{2:02d}'.format(int(date_result.group(1))+1988, int(date_result.group(2)), int(date_result.group(3)))
                 else:
-                    col[flag_key] = div_regex.search(line).group(1)
+                    if div_regex.search(line).group(1) == '&nbsp;':
+                        col[flag_key] = None
+                    else:
+                        col[flag_key] = div_regex.search(line).group(1)
                 flag_key = None
             elif span_regex.search(line):
                 col[flag_key] = span_regex.search(line).group(1)
@@ -478,20 +529,24 @@ K 運搬・清掃・包装等の職業
               'kyushokuUmu': '2',
               'kyushokuUmuHidden': '2'}
     form_data_default.update(id)
-    file_object = open(filename, 'w')
-    file_object.write("^".join(output_header)+"\n")
-    if args.full or (not args.full and not args.part):
+    if args.full or args.part:
+        file_object = open(filename, 'w')
+        file_object.write("^".join(output_header)+"\n")
+    #if args.full or (not args.full and not args.part):
+    if args.full:
         for n in generate_list(gekkyuKagen='',
                                kyujinShuruiHidden='1',
                                nenkanKyujitsu=''):
             file_object.write(fetch_detail(kyujinNumber=n)+"\n")
-    if args.part or (not args.full and not args.part):
+    #if args.part or (not args.full and not args.part):
+    if args.part:
         for n in generate_list(jikyuKagen='',
                                kyujinShuruiHidden='2',
                                shoteiRodoNissu='1',
                                shoteiRodoNissuKagen=''):
             file_object.write(fetch_detail(kyujinNumber=n)+"\n")
-    file_object.close()
+    if args.full or args.part:
+        file_object.close()
 
 if __name__ == '__main__':
     main()
