@@ -1,13 +1,28 @@
 #!/usr/bin/env python3
 
 import argparse
+from email.message import EmailMessage
+from email.headerregistry import Address
 import math
 import re
+import smtplib
 import urllib.parse
 import urllib.request
 
 url = 'https://www.hellowork.go.jp/servicef/130050.do'
 filename = 'helloworkbot.csv'
+
+mta = 'YOUR_MAIL_SERVER:25'
+msg = EmailMessage()
+msg['Subject'] = "helloworkbot"
+msg['From'] = Address("YOUR NAME", "LOCAL-PART", "DOMAIN")
+msg['To'] = (Address("YOUR NAME", "LOCAL-PART", "DOMAIN"),)
+A = ["SOME GROUP A KEYWORD", "SOME OTHER GROUP A KEYWORD", "AND SO ON..."]
+B = ["SOME GROUP B KEYWORD", "SOME OTHER GROUP B KEYWORD", "AND SO ON..."]
+C = ["SOME GROUP C KEYWORD", "SOME OTHER GROUP C KEYWORD", "AND SO ON..."]
+A_regex = re.compile("|".join(A), re.IGNORECASE)
+B_regex = re.compile("|".join(B), re.IGNORECASE)
+C_regex = re.compile("|".join(C))
 
 request_headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
@@ -407,12 +422,55 @@ def fetch_detail(kyujinNumber):
                 flag_key = None
     return '^'.join([str(col[k]) for k in col.keys()])
 
+def mail():
+    table_A_intersection_B = ''
+    table_A_setminus_B_intersection_C = ''
+    html = '''<html>
+<head></head>
+<body>
+<p>A = {{x includes one of {0}}}</p>
+<p>B = {{x includes one of {1}}}</p>
+<p>C = {{x includes one of {2}}}</p>
+'''.format(A, B, C)
+    file_object = open(filename, 'r')
+    for line in file_object:
+        v = line.rstrip().split("^")
+        #if A_regex.search(line):
+        if A_regex.search(v[8]) or A_regex.search(v[9]) or A_regex.search(v[44]) or A_regex.search(v[46]) or A_regex.search(v[47]) or A_regex.search(v[52]) or A_regex.search(v[53]):
+            rec = ''
+            rec += '<table>\n'
+            rec += "<tr><th>job_number</th><td><a href='"+url+'?screenId=130050&action=commonDetailInfo&kyujinNumber1={0}&kyujinNumber2=%0A{1}&kyushokuUmuHidden=1&kyushokuNumber1Hidden={2}&kyushokuNumber2Hidden={3}'.format(v[0].split("-")[0], v[0].split("-")[1], form_data_default['kyushokuNumber1'], form_data_default['kyushokuNumber2'])+"'>"+v[0]+"</a></td></tr>\n"
+            for i in range(1, len(output_header)):
+                rec += "<tr><th>{0}</th><td>{1}</td></tr>\n".format(output_header[i], v[i])
+            rec += "</table>\n"
+            rec += "<hr>\n"
+            #if B_regex.search(line):
+            if B_regex.search(v[8]) or B_regex.search(v[9]) or B_regex.search(v[44]) or B_regex.search(v[46]) or B_regex.search(v[47]) or B_regex.search(v[52]) or B_regex.search(v[53]):
+                table_A_intersection_B += rec
+            #elif C_regex.search(line):
+            elif C_regex.search(v[30]):
+                table_A_setminus_B_intersection_C += rec
+    html += "<h2>A ∩ B</h2>\n"
+    html += table_A_intersection_B
+    html += "<h2>(A \ B) ∩ C</h2>\n"
+    html += table_A_setminus_B_intersection_C
+    html += '''</body>
+</html>
+'''
+    file_object.close()
+    msg.set_content(html, subtype='html')
+    s = smtplib.SMTP(mta)
+    s.send_message(msg)
+    s.quit()
+
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('-a', dest='age', action='store',
                         default='18', help='specify your age')
     parser.add_argument('-i', dest='id', action='store',
                         help='specify your job seeker id')
+    parser.add_argument('-m', dest='mail', action='store_true',
+                        help='mail records including specific words')
     parser.add_argument('-f', dest='full', action='store_true',
                         help='retrieve full-time job offers')
     parser.add_argument('-p', dest='part', action='store_true',
@@ -547,6 +605,8 @@ K 運搬・清掃・包装等の職業
             file_object.write(fetch_detail(kyujinNumber=n)+"\n")
     if args.full or args.part:
         file_object.close()
+    if args.mail:
+        mail()
 
 if __name__ == '__main__':
     main()
